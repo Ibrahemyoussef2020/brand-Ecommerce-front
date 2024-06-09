@@ -81,6 +81,6 @@ export const store = configureStore({
 export let persistor =  persistStore(store);
 
 //export type IRootState = ReturnType<typeof store.combineReducer>
-//export type IRootState = ReturnType<typeof store.getState>
+export type IRootState = ReturnType<typeof store.getState>
 
 
