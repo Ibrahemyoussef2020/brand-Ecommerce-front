@@ -15,7 +15,7 @@ import {
 
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
-export function createPresistStore(){
+export function createPresistStore():WebStorage|any{
 
   const isServer = typeof window !== 'undefined' ;
 
@@ -58,7 +58,7 @@ const combineReducer = combineReducers({
 const persistedReducer = persistReducer(persistCong,combineReducer)
 
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     combine:persistedReducer,
   },
@@ -75,16 +75,12 @@ const store = configureStore({
       }
     })
   },
-  devTools:false
+  //devTools:false
 });
 
-const persistor =  persistStore(store);
+export let persistor =  persistStore(store);
 
-export {
-  store,
-  persistor
-}
 //export type IRootState = ReturnType<typeof store.combineReducer>
-export type IRootState = ReturnType<typeof store.getState>
+//export type IRootState = ReturnType<typeof store.getState>
 
 
