@@ -11,7 +11,7 @@ const page = ({error,reset}:ErrorPage) => {
       <div className='error-page'>
         <div>
           <h1>An error occurred</h1>
-          <button onClick={reset}>Try Again</button>
+          <button onClick={()=> location.reload()}>Try Again</button>
         </div>
       </div>
   )
