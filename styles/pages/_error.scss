@@ -17,7 +17,9 @@
         color: gray;
     }
 
-    button{
+    button , a{
+        display: block;
+        width: fit-content;
         padding: .5rem 1rem;
         color:#fff;
         background:rgb(28, 28, 143);
