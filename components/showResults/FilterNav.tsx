@@ -1,3 +1,4 @@
+'use client';
 
 import { FilterNavprops, FilterProps, ProductProps } from '@/types'
 import { sortLists } from '@/utilities'

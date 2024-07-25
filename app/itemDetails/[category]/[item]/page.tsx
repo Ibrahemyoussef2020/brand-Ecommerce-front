@@ -41,7 +41,3 @@ const page = async ({params}:ParamsProps) => {
 
 export default page
 
-/*
-
-
-*/
