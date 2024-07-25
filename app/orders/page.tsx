@@ -1,4 +1,4 @@
-import DetailsMayLik from "@/components/details/DetailsMayLik"
+import DetailsMayLike from "@/components/details/DetailsMayLike"
 import SavedForLater from "@/components/general/SavedForLater"
 import Header from "@/components/layout/Header"
 import ProgressNav from "@/components/layout/ProgressNav"
@@ -16,7 +16,7 @@ const page = () => {
         <div className="orders-wrapper">
           <OrderResult />
           <div className="may-like">
-            <DetailsMayLik />
+            <DetailsMayLike />
           </div>
         </div>
       </div>

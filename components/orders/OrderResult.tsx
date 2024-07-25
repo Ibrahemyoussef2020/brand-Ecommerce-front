@@ -11,7 +11,7 @@ import SavedForLater from "../../components/general/SavedForLater"
 import PaymentFeatures from '../../components/general/PaymentFeatures';
 import ProductRating from "@/components/general/ProductRating";
 import { selectDate } from "@/utilities";
-import DetailsMayLik from "@/components/details/DetailsMayLik";
+import DetailsMayLike from "@/components/details/DetailsMayLike";
 import { IRootState } from "@/redux/store";
 import EmptyCart from "../cart/EmptyCart";
 

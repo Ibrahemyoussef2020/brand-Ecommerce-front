@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link";
 
 
-const DetailsMayLik = async () => {
+const DetailsMayLike = async () => {
   
   const products = await fetchProductsToServer('home-sections');  
   
@@ -41,6 +41,6 @@ const DetailsMayLik = async () => {
   )
 }
 
-export default DetailsMayLik
+export default DetailsMayLike
 
 

@@ -5,7 +5,7 @@ import DetailsTopCenter from "./DetailsTopCenter"
 import DetailsTopLeft from "./DetailsTopLeft"
 import DetailsBottomNav from "./DetailsBottomNav"
 import DetailsBottomLeft from "./DetailsBottomLeft"
-import DetailsMayLik from "./DetailsMayLik"
+import DetailsMayLike from "./DetailsMayLike"
 import DetailsTopRight from "./DetailsTopRight"
 import DiscountBanner from "../general/DiscountBanner"
 import AnotherItems from "../general/AnotherItems"
@@ -36,7 +36,7 @@ const LargeProductDetails = ({product,category}:props) => {
     
             <div className="bottom">
                 <DetailsBottomLeft product={product} />
-                <DetailsMayLik />          
+                <DetailsMayLike />          
             </div>
 
             <AnotherItems category={category} title="Related products"/>
