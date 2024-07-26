@@ -8,7 +8,7 @@ interface ErrorPage  {
     reset:()=> void
 }
 
-const page = ({error,reset}:ErrorPage) => {
+const Page = ({error,reset}:ErrorPage) => {
 
   const navigate = useRouter();
 
@@ -28,4 +28,4 @@ const page = ({error,reset}:ErrorPage) => {
   )
 }
 
-export default page
+export default Page
