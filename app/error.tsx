@@ -1,5 +1,7 @@
 'use client'
 
+import { useRouter } from "next/router"
+
 
 interface ErrorPage  {
     error:Error,
@@ -7,11 +9,20 @@ interface ErrorPage  {
 }
 
 const page = ({error,reset}:ErrorPage) => {
+
+  const navigate = useRouter();
+
+  const reloadPage = ()=>{
+    navigate.push('/')
+    reset();
+    location.reload();
+  }
+
   return (
       <div className='error-page'>
         <div>
           <h1>An error occurred</h1>
-          <button onClick={()=> location.reload()}>Try Again</button>
+          <button onClick={reloadPage}>Try Again</button>
         </div>
       </div>
   )
