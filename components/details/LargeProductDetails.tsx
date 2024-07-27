@@ -5,11 +5,11 @@ import DetailsTopCenter from "./DetailsTopCenter"
 import DetailsTopLeft from "./DetailsTopLeft"
 import DetailsBottomNav from "./DetailsBottomNav"
 import DetailsBottomLeft from "./DetailsBottomLeft"
-import DetailsMayLike from "./DetailsMayLike"
 import DetailsTopRight from "./DetailsTopRight"
 import DiscountBanner from "../general/DiscountBanner"
 import AnotherItems from "../general/AnotherItems"
 import ProgressNav from "../layout/ProgressNav"
+import DetailsMayLike from "./DetailsMayLike"
 
 interface props {
     product:ProductProps,
