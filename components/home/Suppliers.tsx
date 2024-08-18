@@ -104,7 +104,7 @@ const Suppliers = () => {
             </article>
             <article>
                 <Image
-                    src='/images/flags/german.png'
+                    src='/images/flags/german.webp'
                     alt=''
                     width={32}
                     height={25}

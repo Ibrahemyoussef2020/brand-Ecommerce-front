@@ -103,7 +103,7 @@ const Header = ({page='results',heading='Show Categories'}:props) => {
             </li>
             <li>
                 <span>Ship to</span>
-                <img src="/images/flags/german.png" alt="german" />
+                <img src="/images/flags/german.webp" alt="german" />
                 <select>
                   <option value="german"></option>
                 </select>

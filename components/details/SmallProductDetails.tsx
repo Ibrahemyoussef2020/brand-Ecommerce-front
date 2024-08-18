@@ -140,7 +140,7 @@ const SmallProductDetails = ({product,category}:props) => {
             <div className="features">
                 <div className="feature">
                     <Image
-                        src='/images/flags/german.png'
+                        src='/images/flags/german.webp'
                         alt=""
                         width={21}
                         height={15}
