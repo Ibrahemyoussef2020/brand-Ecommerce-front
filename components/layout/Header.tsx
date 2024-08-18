@@ -111,7 +111,6 @@ const Header = ({page='results',heading='Show Categories'}:props) => {
           </ul>
         </div>
      </div>
-
     </header>
   )
 }

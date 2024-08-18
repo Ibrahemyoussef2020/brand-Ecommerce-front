@@ -120,6 +120,10 @@
             cursor: not-allowed;
         }
 
+        img{
+            max-width: 25px;
+        }
+
 
         @include min-width($large_size){
             display: block;
