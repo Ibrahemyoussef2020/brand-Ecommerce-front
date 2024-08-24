@@ -19,7 +19,7 @@ interface props{
 const ToggleFav = ({product , component}:props) => {
 
   const dispatch = useDispatch()
-  const {favorites} = useSelector((state:IRootState) => state.combine.fav)
+  const {favorites} = useSelector((state:IRootState) => state.fav)
 
  
   const toggleFavProduct = ()=>{

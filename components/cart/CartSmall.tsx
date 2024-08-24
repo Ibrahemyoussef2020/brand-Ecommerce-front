@@ -20,9 +20,9 @@ const CartSmall = () => {
   const [moreList ,setMoreList] = useState<string[]|[]>([])
 
   const dispatch = useDispatch()
-  const {products} = useSelector((state:IRootState) => state.combine.cart)
-  const {bill} = useSelector((state:IRootState) => state.combine.cart)
-  const {productCount} = useSelector((state:IRootState) => state.combine.cart)
+  const {products} = useSelector((state:IRootState) => state.cart)
+  const {bill} = useSelector((state:IRootState) => state.cart)
+  const {productCount} = useSelector((state:IRootState) => state.cart)
   
   
   const router = useRouter()

@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {cartReducer , suggegtionsReducer , asideReducer , suggegtionsMobileFilterReducer , LogReducer , asideFilterSlice , FavReducer} from "./slices";
+import { cartReducer, suggegtionsReducer, asideReducer, suggegtionsMobileFilterReducer, LogReducer, asideFilterSlice, FavReducer } from "./slices";
 
 import {
   persistStore,
@@ -9,78 +9,63 @@ import {
   PAUSE,
   PERSIST,
   REGISTER,
-  WebStorage,
   PURGE
 } from 'redux-persist';
 
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 
-export function createPresistStore():WebStorage|any{
-
-  const isServer = typeof window !== 'undefined' ;
-
-    if (isServer) {
-      return {
-        getItem(){
-          return Promise.resolve(null)
-        },
-        setItem(){
-          return Promise.resolve();
-        },
-        removeItem(){
-          return Promise.resolve()
-        }
+// Handle SSR for redux-persist storage
+const createPersistStorage = () => {
+  if (typeof window === 'undefined') {
+    return {
+      getItem() {
+        return Promise.resolve(null);
+      },
+      setItem() {
+        return Promise.resolve();
+      },
+      removeItem() {
+        return Promise.resolve();
       }
-    }
+    };
+  }
+  return createWebStorage('local');
+};
 
-    return createWebStorage('local');
-}
+const storage = createPersistStorage();
 
+const persistConfig = {
+  key: 'browsing',
+  storage,
+};
 
-const storage = typeof window !== 'undefined' ? createWebStorage('local') : createPresistStore() 
-
-
-const persistCong = {
-  key:'browsring',
-  storage
-}
-
-const combineReducer = combineReducers({
-  cart:cartReducer,
-  suggegtions:suggegtionsReducer,
-  suggegtionsMobileFilter:suggegtionsMobileFilterReducer,
-  aside:asideReducer,
-  log:LogReducer,
-  asideFilter:asideFilterSlice,
-  fav:FavReducer
-})
-
-const persistedReducer = persistReducer(persistCong,combineReducer)
-
-
-export const store = configureStore({
-  reducer: {
-    combine:persistedReducer,
-  },
-  middleware:(getDefaultMiddleware)=>{
-    return getDefaultMiddleware({
-      serializableCheck:{
-        ignoredActions:[
-          FLUSH,
-          REHYDRATE,
-          PAUSE,
-          PERSIST,
-          REGISTER,
-          PURGE],
-      }
-    })
-  },
-  //devTools:false
+const rootReducer = combineReducers({
+  cart: cartReducer,
+  suggegtions: suggegtionsReducer,
+  suggestionsMobileFilter: suggegtionsMobileFilterReducer,
+  aside: asideReducer,
+  log: LogReducer,
+  asideFilter: asideFilterSlice,
+  fav: FavReducer,
 });
 
-export let persistor =  persistStore(store);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-//export type IRootState = ReturnType<typeof store.combineReducer>
-export type IRootState = ReturnType<typeof store.getState>
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE],
+      },
+    }),
+  // devTools: false
+});
+
+export let persistor = persistStore(store);
+
+// TypeScript RootState type
+export type IRootState = ReturnType<typeof store.getState>;
+
 
 

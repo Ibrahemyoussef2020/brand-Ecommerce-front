@@ -41,7 +41,7 @@ const FilterSidebar = (props:FilterSidebarProps) => {
   } = props;
 
   const dispatch = useDispatch();
-  const {isOppend } =  useSelector((state:IRootState)=> state.combine.asideFilter)
+  const {isOppend } =  useSelector((state:IRootState)=> state.asideFilter)
 
 
   const [minPriceFromData,setMinPriceFromData] = useState<number>(0);

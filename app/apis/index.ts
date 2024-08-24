@@ -6,6 +6,9 @@ export const fetchProduct = async (
   setProduct:(product:{}|ProductProps)=>void,
   productId:string )=>{
 
+    console.log(products);
+    
+
     const isCategorySelected = products === '' || !products ? false : true ;
     const res = await fetch(`https://brand-ecommerce-data.onrender.com/${isCategorySelected ? `${products}/${productId}` : ''}`, {
         cache: "no-cache",

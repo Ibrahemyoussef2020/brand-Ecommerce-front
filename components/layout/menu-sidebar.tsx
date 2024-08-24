@@ -12,7 +12,7 @@ import { IRootState } from "@/redux/store";
 const MenuSidebar = () => {
     
     const dispatch = useDispatch();
-    const {isOppend } =  useSelector((state:IRootState )=> state.combine.aside)
+    const {isOppend } =  useSelector((state:IRootState )=> state.aside)
     
   return (
     <div className={`main-side-bar ${isOppend ? 'open' : 'closed'}`}>

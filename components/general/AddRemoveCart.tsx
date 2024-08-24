@@ -15,7 +15,7 @@ interface props{
 
 const AddRemoveCart = ({product,process='add' }:props) => {
     const dispatch = useDispatch()
-    const {products} = useSelector((state:IRootState) => state.combine.cart)
+    const {products} = useSelector((state:IRootState) => state.cart)
 
     const addToCartProduct = ()=>{
 

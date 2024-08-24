@@ -24,7 +24,7 @@ const Searchbar = ({size = 'pc'}:prop) => {
   const [selectedValue , setSelectedValue] = useState('')
   const [magnifyingGlassColor , setMagnifyingGlassColor] = useState('text-costum-clr_primary')
   const [closeClass,setCloseClass] = useState('hidden');
-  const {suggegtionsFromRedux} =  useSelector((state:IRootState )=> state.combine.suggegtions)
+  const {suggegtionsFromRedux} =  useSelector((state:IRootState )=> state.suggegtions)
 
   const dispatch = useDispatch()
   const router = useRouter()

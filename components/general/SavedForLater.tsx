@@ -24,7 +24,7 @@ interface props {
 
 const SavedForLater = () => {
    
-const {favorites} = useSelector((state:IRootState) => state.combine.fav);
+const {favorites} = useSelector((state:IRootState) => state.fav);
 const dispatch = useDispatch()
 
 

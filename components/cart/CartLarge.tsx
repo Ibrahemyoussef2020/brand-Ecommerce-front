@@ -15,8 +15,8 @@ import EmptyCart from "./EmptyCart"
 const CartLarge = () => {
     
     const dispatch = useDispatch()
-    const {products} = useSelector((state:IRootState) => state.combine.cart)
-    const {productCount} = useSelector((state:IRootState) => state.combine.cart)
+    const {products} = useSelector((state:IRootState) => state.cart)
+    const {productCount} = useSelector((state:IRootState) => state.cart)
     const router = useRouter()
   
     const handleModifyQuantity = (e:React.ChangeEvent<HTMLSelectElement> ,id:string)=>{
