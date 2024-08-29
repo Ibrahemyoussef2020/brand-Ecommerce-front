@@ -2,15 +2,11 @@ import { ProductProps } from "@/types";
 
 
 export const fetchProduct = async (
-  products:string,
+  products:string  = 'recomended-items' ,
   setProduct:(product:{}|ProductProps)=>void,
-  productId:string )=>{
+  productId:string = '1' )=>{
 
-    console.log(products);
-    
-
-    const isCategorySelected = products === '' || !products ? false : true ;
-    const res = await fetch(`https://brand-ecommerce-data.onrender.com/${isCategorySelected ? `${products}/${productId}` : 'recomended-items/1'}`, {
+    const res = await fetch(`https://brand-ecommerce-data.onrender.com/${products}`, {
         cache: "no-cache",
       })
       .then(res => {
@@ -24,9 +20,8 @@ export const fetchProduct = async (
 }
 
 
-export const showProducts = async (products:string,setProducts:(product:[]|ProductProps[])=>void)=>{
-  const isCategorySelected = products === '' || !products ? false : true ;
-  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${isCategorySelected ? `${products}` : 'recomended-items'}`, {
+export const showProducts = async (products:string = 'recomended-items',setProducts:(product:[]|ProductProps[])=>void)=>{
+  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${products}`, {
       cache: "no-cache",
     })
     .then(res =>{
@@ -41,10 +36,8 @@ export const showProducts = async (products:string,setProducts:(product:[]|Produ
   
 }
 
-export const fetchProductsToServer = async (products:string)=>{
-
-  const isCategorySelected = products === '' || !products ? false : true ;
-  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${isCategorySelected ? `${products}` : 'recomended-items'}`, {
+export const fetchProductsToServer = async (products:string  = 'recomended-items')=>{
+  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${products}`, {
        cache:'no-cache',
   });
   
@@ -55,10 +48,9 @@ export const fetchProductsToServer = async (products:string)=>{
       return res.json()
 }
 
-export const fetchProductToServer = async (category:string,item:string)=>{
+export const fetchProductToServer = async (category:string ='recomended-items' , item :string ='1')=>{
 
-  const isCategorySelected = category === '' || !category ? false : true ;
-  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${isCategorySelected ? `${category}/${item}` : 'recomended-items/1'}`, {
+  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${category}/${item}}`, {
     cache:'no-cache'
   });
   
