@@ -71,11 +71,11 @@ const ProfileInfo = () => {
 
             <div className='form-wrapper'>
                 <h2>Send to Ibrahim</h2>
-                <form>
+                <div className='form'>
                     <input type="text" className='title' placeholder='Subject Tiitle' />
                     <textarea name="send-to-ibrahim" id="send-to-ibrahim" placeholder='write to Ibrahime'></textarea>
                     <button className='btn'>Send Message</button>
-                </form>
+                </div>
             </div>
         </div>   
     </div>
