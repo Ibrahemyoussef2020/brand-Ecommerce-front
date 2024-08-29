@@ -16,7 +16,7 @@ const recomendedItems = await fetchProductsToServer('recomended-items');
         <h2>Recommended items</h2>
         <div>
             {
-                recomendedItems?.map((recomendedItem:ProductProps )=> {
+               recomendedItems && recomendedItems?.length ? recomendedItems?.map((recomendedItem:ProductProps )=> {
                     return <article key={recomendedItem.id}>
                         <div className='broweserd-product'>
                             <div className='img-wrapper'>
@@ -36,7 +36,7 @@ const recomendedItems = await fetchProductsToServer('recomended-items');
                         </div>
                     </article>
                 })
-            }
+           : <div>no RecomendedItem</div> }
         </div>
     </section>
   )

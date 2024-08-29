@@ -31,6 +31,7 @@ import Pagenations from "@/components/showResults/Pagenations";
 import Subscribe from "@/components/layout/Subscribe";
 import AnotherItems from "@/components/general/AnotherItems";
 import CategoriesLinksSwipper from "@/components/layout/categoriesLinksSwipper";
+import { log } from "console";
 
 
 type prop = {
@@ -100,14 +101,17 @@ const handleFilter = (filterData:FilterProps, isAdded:boolean):boolean|void => {
     }
 
     else if(filterData.type === 'remove-filter'){
-      filterList = filterList.filter((filter:FilterProps )=> filter.prop !== filterData.prop  )
-      const modifiedProducts = filterProductsList(filterList, constantProducts );
-      setProducts(modifiedProducts);
-    
-      const newSelectedFiltesr = filterList.map(filter => filter.type === filterData.type && filter.type === 'list' ?  filter.values = [] : null)
-
-      setFilterSelectedList(filterList)
-
+      console.log('typ',filterData.type);
+      
+        filterList = filterList.filter((filter:FilterProps )=> filter.prop !== filterData.prop  )
+        const modifiedProducts = filterProductsList(filterList, constantProducts );
+        setProducts(modifiedProducts);
+      
+       // const newSelectedFiltesr = filterList.map(filter => filter.type === filterData.type && filter.type === 'list' ?  filter.values = [] : null)
+  
+       setFilterSelectedList(filterList)
+       //setFilterSelectedList(newSelectedFiltesr)
+      
       
       return true
     }
@@ -126,15 +130,28 @@ const handleFilter = (filterData:FilterProps, isAdded:boolean):boolean|void => {
       
       setFilterSelectedList(filterList)
 
-      
     }
     else {
       if (filterData.type === 'list') {
-          
+        
+        
+          /*console.log(filterData.values);
           const newValues = filterData.values;
-          const newFilterData = {...filterData , values:newValues}
+          const newFilterData = {...filterData , values:newValues}*/
+          
+          const isExist = filterList.find(filter => filter.prop === filterData.prop);
+          console.log(isExist);
+          
+          if (isExist) {
+            console.log('eccccccccc');
+            
+            filterList = filterList.map(filter => filter.prop === filterData.prop ? filterData : filter)
+          } else {
+            
+            filterList = [...filterList, filterData];
+          }
 
-          filterList = filterList.map(filter => newFilterData)
+          
       }else{
         filterList = filterList.filter(filterItem => filterItem.prop !== filterData.prop)
       }
@@ -167,10 +184,6 @@ const handleFilter = (filterData:FilterProps, isAdded:boolean):boolean|void => {
 // _______________________  end handle filter  ____________//
 
 
- 
-
-
-//will remove
   function handleSortStrategy(){
 
    const sortedProducts = sortLists({filter:sort,products}) 

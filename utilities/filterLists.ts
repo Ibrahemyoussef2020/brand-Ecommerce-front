@@ -6,6 +6,10 @@ const filterProductsList = (filters:FilterProps[]|[], list:ProductProps[]|[] , c
    
       let filterdList = list;
 
+
+      console.log(filters);
+      
+
       if (!filters.length) {
             return list
       }else{

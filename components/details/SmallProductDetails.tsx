@@ -176,6 +176,8 @@ const SmallProductDetails = ({product,category}:props) => {
        
       </div>
     )
+  }else{
+    return <div></div>
   }
 }
 

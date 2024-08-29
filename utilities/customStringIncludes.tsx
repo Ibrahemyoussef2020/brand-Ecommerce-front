@@ -7,4 +7,6 @@ const customStringIncludes = (list:string[] | [] , item:string):boolean => {
   return checkout;
 }
 
+
+
 export default customStringIncludes

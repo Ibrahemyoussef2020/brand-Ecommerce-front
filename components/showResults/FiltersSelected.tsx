@@ -19,6 +19,9 @@ const FiltersSelected = ({filterSelectedList,filterRemove,setFilterRemove,setFil
     setMaxCountProducts(100)
   }
 
+  console.log(filterSelectedList);
+  
+
   return (
     <div className={`filter-selected-list ${filterSelectedList.length ? '' : 'empty-selected-list'}`}>
       {filterSelectedList?.length ?  <button onClick={handleClear} className="clear-selected-filters">

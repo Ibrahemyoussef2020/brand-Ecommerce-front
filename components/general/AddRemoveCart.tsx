@@ -91,6 +91,9 @@ const AddRemoveCart = ({product,process='add' }:props) => {
         </button>
       )
   }
+  else{
+    return <button></button>
+  }
 }
 
 export default AddRemoveCart

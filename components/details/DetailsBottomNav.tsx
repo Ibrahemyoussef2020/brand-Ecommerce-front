@@ -1,3 +1,6 @@
+'use client'
+// couze onclick
+
 import { ProductProps } from "@/types"
 import Link from "next/link"
 

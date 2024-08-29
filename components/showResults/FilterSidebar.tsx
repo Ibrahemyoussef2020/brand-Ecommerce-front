@@ -275,6 +275,9 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
 
         brandValues = brandValues.filter((brand:string )=> brand !== filter.value)
 
+        console.log(brandValues);
+        
+
         handleFilter({
           prop:filter.name,
           checked:false,
@@ -283,6 +286,8 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
           values: brandValues,
           filterFn:(product:any,customFilter:any) => customFilter.values.includes(product[filter.name]),
         } ,true)
+
+        setFilterRemove({name:'',value:''})
       } 
       else if (filter.name === 'avgRating'){
 
