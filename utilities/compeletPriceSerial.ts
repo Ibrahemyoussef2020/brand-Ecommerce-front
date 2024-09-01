@@ -1,4 +1,4 @@
-const compeletPriceSerial = (number:number|string) => {
+const compeletPriceSerial = (number:number|string = '5000') => {  
     const originalLength = 2;
     const length =  number.toString().length
     for (let index = 0; index <= originalLength ; index++) {     

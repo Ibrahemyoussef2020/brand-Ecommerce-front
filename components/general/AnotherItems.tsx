@@ -23,7 +23,7 @@ const AnotherItems = ({category='consumer-sections',title}:props) => {
 
     useEffect(()=>{
         showProducts(category,setProducts);
-    },[])
+    },[category,title])
 
  if (products?.length) {
   return (

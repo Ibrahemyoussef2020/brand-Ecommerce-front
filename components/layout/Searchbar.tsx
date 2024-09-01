@@ -38,6 +38,10 @@ const Searchbar = ({size = 'pc'}:prop) => {
       fetchData()
     },[sug]) 
 
+    if (!sugList.length) {
+      return <div></div>
+    }
+
     const handleSug  = (e:React.FormEvent<HTMLInputElement>)=>{
         const {value} = e.currentTarget;
         if (value === '') {

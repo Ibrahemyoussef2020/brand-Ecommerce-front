@@ -47,7 +47,6 @@ const AddRemoveCart = ({product,process='add' }:props) => {
 
         if (customObjectIncludes(products,product.id)) {
             const targetProduct = products.find((item:ProductProps) => item.id === product.id)
-            console.log(targetProduct);
             
             return(
                 <button className='buy' onClick={addToCartProduct}>
@@ -92,7 +91,7 @@ const AddRemoveCart = ({product,process='add' }:props) => {
       )
   }
   else{
-    return <button></button>
+    return <button>button</button>
   }
 }
 

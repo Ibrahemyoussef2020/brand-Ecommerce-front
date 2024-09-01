@@ -10,6 +10,10 @@ interface ItemProps{
 
 const manageTitles = (item:ItemProps,prop:string)=>{
 
+    if (!item || !prop) {
+        return false
+    }
+
     const lowerCaseItem = item[prop] && item[prop].toLowerCase() 
     const charCodeItem = item[prop] && lowerCaseItem.charCodeAt(0)
     return charCodeItem
@@ -22,6 +26,10 @@ interface sortProps {
 
 
 const sortLists = ({filter,products}:sortProps) => {
+
+    if (!filter||!products.length || !products) {
+        return []
+      }  
 
     let list = products;
 

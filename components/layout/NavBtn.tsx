@@ -11,6 +11,10 @@ const NavBtn = () => {
     const dispatch = useDispatch()
     const {isOppend } =  useSelector((state:IRootState )=> state.aside)
     
+    if (typeof isOppend == 'undefined') {
+      return <div></div>
+    }
+    
   return (
     <button className='aside_toggle' onClick={_=>dispatch(toggleAside(true))}>
         <FontAwesomeIcon icon={faBars}  color="gray"  />

@@ -18,7 +18,11 @@ interface props {
 
 const LargeProductDetails = ({product,category}:props) => {
 
- if (product != null) {
+    if (!product || !category) {
+        return <div></div>
+     }
+
+
     return (
         <div className="pc-details">
 
@@ -43,10 +47,6 @@ const LargeProductDetails = ({product,category}:props) => {
             <DiscountBanner/>
         </div>
       )
- }else{
-   return <div></div>
- }
-
 }
 
 export default LargeProductDetails

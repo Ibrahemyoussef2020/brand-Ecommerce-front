@@ -18,6 +18,8 @@ const CartLarge = () => {
     const {products} = useSelector((state:IRootState) => state.cart)
     const {productCount} = useSelector((state:IRootState) => state.cart)
     const router = useRouter()
+
+    
   
     const handleModifyQuantity = (e:React.ChangeEvent<HTMLSelectElement> ,id:string)=>{
 
@@ -38,6 +40,8 @@ const CartLarge = () => {
     dispatch(addToFavStore(product));
     dispatch(removeFromCart(product.id))
   }
+
+
 
 
   return (

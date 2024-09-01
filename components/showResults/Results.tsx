@@ -29,6 +29,11 @@ const Results = ({products,category,maxCountProducts,handleFilter}:props) => {
          filterFn:(product:ProductProps,filter:FilterProps) => true,
         } , true)
       }
+
+
+      if (!products||!products.length || !category) {
+        return <div></div>
+      }  
     
 
   return  <div className="product-results">

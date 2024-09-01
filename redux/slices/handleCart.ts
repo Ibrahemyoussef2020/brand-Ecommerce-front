@@ -85,6 +85,9 @@ const cartSlice = createSlice({
   
             state.finalBill = state.bill
             state.purchases = state.products
+            state.bill = 0;
+            state.productCount = 0;
+            state.products = [];  
             
         },
         increaseQuantity:(state,action)=>{

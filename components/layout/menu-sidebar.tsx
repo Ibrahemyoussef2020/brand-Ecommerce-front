@@ -13,6 +13,10 @@ const MenuSidebar = () => {
     
     const dispatch = useDispatch();
     const {isOppend } =  useSelector((state:IRootState )=> state.aside)
+
+    if (typeof isOppend == 'undefined') {
+      return <div></div>
+    }
     
   return (
     <div className={`main-side-bar ${isOppend ? 'open' : 'closed'}`}>

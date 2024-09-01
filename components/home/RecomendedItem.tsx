@@ -11,12 +11,16 @@ const RecomendedItem = async () => {
 
 const recomendedItems = await fetchProductsToServer('recomended-items');
 
+if (!recomendedItems || !recomendedItems?.length) {
+    return <div></div>
+  }
+
   return (
     <section className='recomended-items'>
         <h2>Recommended items</h2>
         <div>
             {
-               recomendedItems && recomendedItems?.length ? recomendedItems?.map((recomendedItem:ProductProps )=> {
+                recomendedItems?.map((recomendedItem:ProductProps )=> {
                     return <article key={recomendedItem.id}>
                         <div className='broweserd-product'>
                             <div className='img-wrapper'>
@@ -36,7 +40,7 @@ const recomendedItems = await fetchProductsToServer('recomended-items');
                         </div>
                     </article>
                 })
-           : <div>no RecomendedItem</div> }
+           }
         </div>
     </section>
   )

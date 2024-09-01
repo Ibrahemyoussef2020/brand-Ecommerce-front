@@ -15,6 +15,10 @@ const Pagenations = ({maxCountProducts,setMaxCountProducts}:props) => {
   }
 
 
+  if (!maxCountProducts) {
+    return <div></div>
+  }  
+
   return (
     <div className='result-pagenations'>
         

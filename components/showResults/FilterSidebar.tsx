@@ -1,6 +1,6 @@
 'use client'
 
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
 import {customStringIncludes, filterProductsList} from '@/utilities'
 import { FilterInputProps, FilterProps, FilterSidebarProps, ProductProps } from '@/types';
 import DropArrow from '../general/DropArrow';
@@ -44,6 +44,7 @@ const FilterSidebar = (props:FilterSidebarProps) => {
   const {isOppend } =  useSelector((state:IRootState)=> state.asideFilter)
 
 
+
   const [minPriceFromData,setMinPriceFromData] = useState<number>(0);
   const [maxPriceFromData,setMaxPriceFromData] = useState<number>(2000);
 
@@ -59,6 +60,9 @@ const FilterSidebar = (props:FilterSidebarProps) => {
   const [selectedType,setSelectedType] = useState<string>('')
 
 
+  const [loading,setLoading]=useState<Boolean>(true)
+
+
   const ref_premium_offer = useRef<HTMLInputElement[]>([]);
   const ref_free_delivery = useRef<HTMLInputElement[]>([])
   const ref_to_home = useRef<HTMLInputElement[]>([])
@@ -69,34 +73,6 @@ const FilterSidebar = (props:FilterSidebarProps) => {
   const ref_colorEls = useRef<HTMLInputElement[]>([])
   
 
-  useEffect(()=>{
-    const colors = new Set(constantList.map((product:ProductProps )=> product.color))
-    setProductsColor(Array.from(colors))
-
-    const brands = new Set(constantList.map(product => product.brand))
-    setProductsBrand(Array.from(brands))
-
-    const types = new Set(constantList.map(product => product.type))
-    setProductsType(Array.from(types))
-
-    const prices = constantList.map((product:ProductProps)=> product.price)
-
-    const minPrice = Math.floor(Math.min(...prices));
-    const maxPrice = Math.floor(Math.max(...prices));
-    
-    setMinPriceFromData(minPrice);
-    setMaxPriceFromData(maxPrice);
-
-
-    if (filterRemove.name !== '') {
-     handleUnCheckInput(filterRemove)
-    }
-
-    if (filtersClear) {
-      handleClearFilters()
-    }
-
-  },[selectedValue,filterRemove,filtersClear,minPriceValue,maxPriceValue,visibleSection,constantList])
 
   //________________ price _______________________//
 
@@ -227,7 +203,7 @@ const FilterSidebar = (props:FilterSidebarProps) => {
 //_______________  unCheck input _______________//
 
 
-const handleUnCheckInput = (filter:FilterInputProps)=>{
+const handleUnCheckInput = useCallback((filter:FilterInputProps)=>{
 
   if (filter.name === 'premium_offer' || filter.name === 'free_delivery' || filter.name === 'to_home' || filter.name === 'verified') {
       if (filter.name === 'premium_offer') {
@@ -274,8 +250,6 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
       else if (filter.name === 'brand'){
 
         brandValues = brandValues.filter((brand:string )=> brand !== filter.value)
-
-        console.log(brandValues);
         
 
         handleFilter({
@@ -325,7 +299,7 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
         brandValues = brandValues.filter(value => value !== filter.value);
       }
   }
-}
+},[handleFilter,setFilterRemove,setFiltersClear])
 
 
 //_______________  remove filter _______________//
@@ -380,7 +354,7 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
 
   //_______________ Clear all filters _______________//
 
-  function handleClearFilters(){
+  const handleClearFilters = useCallback(()=> {
     if (filtersClear) {
       ref_premium_offer.current.map((ref:HTMLInputElement )=> ref.checked = false)
       ref_free_delivery.current.map((ref:HTMLInputElement )=> ref.checked = false);
@@ -409,7 +383,9 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
         } , false)
 
       }
-  }
+      // dependency selectedType
+      
+  },[filtersClear ,handleFilter])
 
 //_______________ prop arrows  _______________//
 
@@ -426,7 +402,49 @@ const handleUnCheckInput = (filter:FilterInputProps)=>{
     }
   }
 
+
+//_______________ Effect _________________//
+
+useEffect(()=>{
+
+  setLoading(false)
+
+  const colors = new Set(constantList.map((product:ProductProps )=> product.color))
+  setProductsColor(Array.from(colors))
+
+  const brands = new Set(constantList.map(product => product.brand))
+  setProductsBrand(Array.from(brands))
+
+  const types = new Set(constantList.map(product => product.type))
+  setProductsType(Array.from(types))
+
+  const prices = constantList.map((product:ProductProps)=> product.price)
+
+  const minPrice = Math.floor(Math.min(...prices));
+  const maxPrice = Math.floor(Math.max(...prices));
+  
+  setMinPriceFromData(minPrice);
+  setMaxPriceFromData(maxPrice);
+
+
+  if (filterRemove.name !== '') {
+   handleUnCheckInput(filterRemove)
+  }
+
+  if (filtersClear) {
+    handleClearFilters()
+  }
+
+},[selectedValue,filterRemove,filtersClear,minPriceValue,maxPriceValue,visibleSection,constantList])
+
+
 //_______________ Dom  _______________//
+
+
+if (loading) {
+  return <div></div>
+}
+
  
     return (
       <aside className={`filter-aside ${isOppend ? 'open' : 'closed'}`}>

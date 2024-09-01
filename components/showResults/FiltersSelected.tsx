@@ -6,7 +6,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import {  FilterProps,FiltersSelectedProps } from '@/types'
-import { Dispatch, SetStateAction, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -19,8 +19,10 @@ const FiltersSelected = ({filterSelectedList,filterRemove,setFilterRemove,setFil
     setMaxCountProducts(100)
   }
 
-  console.log(filterSelectedList);
-  
+
+  if (!filterSelectedList||!filterSelectedList.length) {
+    return <div></div>
+  }  
 
   return (
     <div className={`filter-selected-list ${filterSelectedList.length ? '' : 'empty-selected-list'}`}>

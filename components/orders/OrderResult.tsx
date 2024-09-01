@@ -22,7 +22,9 @@ const OrderResult = () => {
   const {products} = useSelector((state:IRootState) => state.cart)
   const router = useRouter()
 
-
+  if (!purchases || !products) {
+    return <div></div>
+  }
   
 
   return  <div className="order-results">

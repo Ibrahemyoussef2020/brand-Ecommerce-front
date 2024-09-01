@@ -9,7 +9,7 @@ import Link from "next/link";
 import { ProductProps } from "@/types";
 import Image from "next/image";
 import BrowserProduct from "../general/BrowserProduct";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { showProducts } from "@/app/apis";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromFavStore } from "@/redux/slices";
@@ -28,12 +28,17 @@ const {favorites} = useSelector((state:IRootState) => state.fav);
 const dispatch = useDispatch()
 
 
+if (!favorites || !favorites?.length) {
+  return <div></div>
+}
+
+
 const handleAddToCart = (product:ProductProps)=>{
   dispatch(addToCart(product));
   dispatch(removeFromFavStore(product.id))
 }
 
- if (favorites?.length) {
+
   return (
     <>
     <section className="saved-for-later large-screens">
@@ -119,9 +124,6 @@ const handleAddToCart = (product:ProductProps)=>{
       </section>
     </>  
   )
- }else{
-  return ''
- }
 }
 
 export default SavedForLater

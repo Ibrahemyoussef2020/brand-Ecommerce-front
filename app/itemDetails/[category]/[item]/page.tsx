@@ -22,7 +22,16 @@ type ParamsProps = {
 
 const page = async ({params}:ParamsProps) => {
    const {category,item} = params;
+
+   if (!category || !item) {
+      return <div></div>
+   }
+
+
+   
    const product = await fetchProductToServer(category , item); 
+
+
 
   return (
     <>

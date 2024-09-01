@@ -31,7 +31,6 @@ import Pagenations from "@/components/showResults/Pagenations";
 import Subscribe from "@/components/layout/Subscribe";
 import AnotherItems from "@/components/general/AnotherItems";
 import CategoriesLinksSwipper from "@/components/layout/categoriesLinksSwipper";
-import { log } from "console";
 
 
 type prop = {
@@ -43,11 +42,7 @@ let filterList:FilterProps[]|[] = [];
 
 const Page = () => {
     const params = useParams<prop>();
-    const {category} = params;
-
-    console.log(params);
-    
-
+    const {category} = params; 
 
     const [products,setProducts] = useState<[]|ProductProps[]>([]);
     const [constantProducts, setConstantProducts] = useState<[]|ProductProps[]>([]);
@@ -73,15 +68,20 @@ const Page = () => {
 
     const [maxCountProducts,setMaxCountProducts] = useState<number>(100);
 
+
+
     useEffect(()=> {
         if (!products.length) {
           showProducts(category, setProducts);
         }
         showProducts(category, setConstantProducts);
     
-      }, [category,sort]);
+      }, [category,sort,products.length]);
 
 
+      if (!products.length) {
+        return <div></div>
+     }
 
 
 //__________  start handle filter ____________//
@@ -101,7 +101,6 @@ const handleFilter = (filterData:FilterProps, isAdded:boolean):boolean|void => {
     }
 
     else if(filterData.type === 'remove-filter'){
-      console.log('typ',filterData.type);
       
         filterList = filterList.filter((filter:FilterProps )=> filter.prop !== filterData.prop  )
         const modifiedProducts = filterProductsList(filterList, constantProducts );
@@ -135,15 +134,13 @@ const handleFilter = (filterData:FilterProps, isAdded:boolean):boolean|void => {
       if (filterData.type === 'list') {
         
         
-          /*console.log(filterData.values);
+          /*
           const newValues = filterData.values;
           const newFilterData = {...filterData , values:newValues}*/
           
           const isExist = filterList.find(filter => filter.prop === filterData.prop);
-          console.log(isExist);
           
           if (isExist) {
-            console.log('eccccccccc');
             
             filterList = filterList.map(filter => filter.prop === filterData.prop ? filterData : filter)
           } else {

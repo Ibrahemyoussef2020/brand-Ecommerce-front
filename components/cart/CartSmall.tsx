@@ -18,15 +18,15 @@ import EmptyCart from "./EmptyCart"
 
 const CartSmall = () => {
   const [moreList ,setMoreList] = useState<string[]|[]>([])
-
+  const router = useRouter()
   const dispatch = useDispatch()
   const {products} = useSelector((state:IRootState) => state.cart)
   const {bill} = useSelector((state:IRootState) => state.cart)
   const {productCount} = useSelector((state:IRootState) => state.cart)
   
-  
-  const router = useRouter()
 
+  
+ 
  
 const handleByProcess = ()=>{
   dispatch(handleBill())

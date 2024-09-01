@@ -21,6 +21,11 @@ const ToggleFav = ({product , component}:props) => {
   const dispatch = useDispatch()
   const {favorites} = useSelector((state:IRootState) => state.fav)
 
+  
+if (!product || !component) {
+  return <div>Can not add to save</div>
+}
+
  
   const toggleFavProduct = ()=>{
     if (customObjectIncludes(favorites,product.id) ) {

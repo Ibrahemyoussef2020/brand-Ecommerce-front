@@ -11,10 +11,10 @@ interface prop  {
 
 const BrowserProduct = (prop:prop) => {
   const {section , productId} = prop;
-  
-  return (
-    <Link 
-      href={productId === '' ? `/showResults/${section}` : `/itemDetails/${section}/${productId}`}
+
+  if (!productId && section) {
+   return <Link 
+      href={`/showResults/${section}`}
       className='browser-product'>
         <span>Details</span> 
         <Image
@@ -24,6 +24,25 @@ const BrowserProduct = (prop:prop) => {
             width={25}
         />
     </Link>
+ }
+
+ if (productId && section) {
+  return <Link 
+     href={`itemDetails/${section}/${productId}`}
+     className='browser-product'>
+       <span>Details</span> 
+       <Image
+           src='/images/details.webp'
+           alt='->'
+           height={30}
+           width={25}
+       />
+   </Link>
+}
+
+  
+  return (
+    <div></div>
   )
 }
 

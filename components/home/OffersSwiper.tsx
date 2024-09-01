@@ -22,6 +22,10 @@ const OffersSwiper = () => {
         showProducts('deal-offers',setProducts);
     },[])
 
+    if (!products?.length) {
+      return <div></div>
+    }
+
 
   return (
     <div className="offers-swiper">

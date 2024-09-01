@@ -18,7 +18,11 @@ interface props {
 
 
 const SmallProductDetails = ({product,category}:props) => {
-  if (product != null) {
+
+    if (!product || !category) {
+        return <div></div>
+     }
+
     return (
       <div className="mobile-details">
         <ProgressNav page="details" category={category} item={product.title} /> 
@@ -176,9 +180,6 @@ const SmallProductDetails = ({product,category}:props) => {
        
       </div>
     )
-  }else{
-    return <div></div>
-  }
 }
 
 export default SmallProductDetails

@@ -13,6 +13,10 @@ const DropArrow = (props:props) => {
 
     const {list,item} = props;
 
+    if (!list && !item) {
+      return <div></div>
+    }
+
   return (
     <>
       {

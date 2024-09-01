@@ -7,6 +7,10 @@ import Link from "next/link";
 const DetailsMayLike = async () => {
   
   const products = await fetchProductsToServer('home-sections');  
+
+  if (!products || !products.length) {
+    return <div></div>
+ }
   
   return (
     <div className="may-like right">

@@ -50,12 +50,13 @@ export const fetchProductsToServer = async (products:string  = 'recomended-items
 
 export const fetchProductToServer = async (category:string ='recomended-items' , item :string ='1')=>{
 
-  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${category}/${item}}`, {
+  const res = await fetch(`https://brand-ecommerce-data.onrender.com/${category}/${item}`, {
     cache:'no-cache'
   });
   
   if (!res.ok) {
-    throw new Error("Failed to fetch products");
+    
+    throw new Error(res.url);
   }
   
     return res.json()

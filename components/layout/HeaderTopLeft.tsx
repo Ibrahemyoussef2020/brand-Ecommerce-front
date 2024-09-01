@@ -14,6 +14,10 @@ interface props {
 const HeaderTopLeft = ({page,heading = ''}:props) => {
     const navigate = useRouter(); 
 
+    if (!page ||  !heading) {
+        return <div></div>
+      }
+
     const takeAstepBack = ()=>{
         navigate.push('/')
     }

@@ -5,7 +5,7 @@ import { sortLists } from '@/utilities'
 import { faMicrosoft } from '@fortawesome/free-brands-svg-icons'
 import { faBars, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {toggleMobileAsideFilter} from '@/redux/slices';
 import Image from 'next/image'
@@ -16,6 +16,7 @@ import { IRootState } from '@/redux/store'
 const FilterNav = ({products,setProducts,category,sort,setSort,handleSortStrategy,design,setDesign,filterSelectedList,filtersClear,setFiltersClear,maxCountProducts,handleFilter}:FilterNavprops) => {
 
   const dispatch = useDispatch()
+  const [loading,setLoading]=useState<Boolean>(true)
   const {isOppend } =  useSelector((state:IRootState)=> state.asideFilter)
   const verifiedRef = useRef<any>();
 
@@ -46,18 +47,23 @@ const FilterNav = ({products,setProducts,category,sort,setSort,handleSortStrateg
     const isVierifiedFoundInFilters = filterSelectedList.some((filter:FilterProps) => filter.prop === 'verified')
 
     useEffect(()=>{
-      if (filtersClear) {
-        verifiedRef.current.checked = false;
-      }
-
-      if (!isVierifiedFoundInFilters) {
-        verifiedRef.current.checked = false
+      setLoading(false)
+      
+      if (filtersClear || !isVierifiedFoundInFilters) {
+        if (verifiedRef != null && verifiedRef.current !== undefined) {
+          verifiedRef.current.checked = false;
+        }
       }
        
-    },[filtersClear,filterSelectedList])
+    },[filtersClear,filterSelectedList,isVierifiedFoundInFilters])
 
 
     const productsShowenCount = Math.min(maxCountProducts,+products.length)
+
+  if (loading) {
+    return <div></div>
+  }
+  
 
   return (
     <nav className="filter-nav">

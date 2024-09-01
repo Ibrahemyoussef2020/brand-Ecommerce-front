@@ -9,6 +9,11 @@ interface prop {
 }
 
 const ProductRating = ({avgRating}:prop) => {
+
+  if (!avgRating) {
+    return <div></div>
+  }
+
   return (
     <div>
     {new Array(5).fill("").map((_, i) => {

@@ -20,11 +20,14 @@ const BothHomeElectricSwiper = ({section}:prop) => {
 
     const [products,setProducts] = useState<[]|ProductProps[]>([]);
 
+
     useEffect(()=>{
         showProducts(section,setProducts);
-    },[])
+    },[section])
 
-
+    if (!products?.length) {
+      return <div></div>
+    }
     
   
   return (
