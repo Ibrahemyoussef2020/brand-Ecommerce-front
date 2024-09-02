@@ -80,7 +80,14 @@ const BothHomeElectricSwiper = ({section}:prop) => {
     <div className="src">
       <Link href={`/showResults/${section}`}>
         Source now
-        <img src="/images/home-arrow.webp" alt="->" />
+        <div className=' fit-size'>
+        <Image 
+          src="/images/home-arrow.webp" 
+          alt="->" 
+          layout="fill"
+          objectFit="contain"
+          />
+          </div>
       </Link>
     </div>
     </>

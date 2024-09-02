@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useState } from 'react'
 
 
@@ -17,14 +18,17 @@ const EasyRrquest = () => {
   
   return (
     <section className='easy-req' id='request'>
-        <picture>
-            <source media="(min-width:570px)" srcSet="/images/easy-req-pc.webp" />
-             <img 
-             src="/images/easy-req-mob.webp" 
-             alt="" 
-             />   
-        </picture>
-
+      <div className='fit-size'>
+          <picture>
+              <source media="(min-width:570px)" srcSet="/images/easy-req-pc.webp" />
+              <Image
+                src="/images/easy-req-mob.webp" 
+                alt="" 
+                layout="fill"
+                objectFit="contain"
+              />   
+          </picture>
+        </div>
         <div className='query'>
             <div className={`intro ${fullWidth === 'intro' ? 'visible' : ''}`}>
                 <h2>

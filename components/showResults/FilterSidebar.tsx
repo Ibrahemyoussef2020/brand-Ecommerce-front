@@ -434,8 +434,8 @@ useEffect(()=>{
   if (filtersClear) {
     handleClearFilters()
   }
-
-},[selectedValue,filterRemove,filtersClear,minPriceValue,maxPriceValue,visibleSection,constantList])
+// delet handleClearFilters and handleUnCheckInput becauze it couse of maximum error
+},[selectedValue,filterRemove,filtersClear,minPriceValue,maxPriceValue,visibleSection,constantList,handleClearFilters,handleUnCheckInput])
 
 
 //_______________ Dom  _______________//
