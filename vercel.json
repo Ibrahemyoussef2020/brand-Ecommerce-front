@@ -9,6 +9,10 @@
             "dest":"/"
         },
         {
+            "src":"/itemDetails/[category]/[item]",
+            "dest":"/"
+        },
+        {
             "src":"orders",
             "dest":"/"
         },
@@ -18,6 +22,10 @@
         },
         {
             "src":"saved",
+            "dest":"/"
+        },
+        {
+            "src":"/showResults/[category]",
             "dest":"/"
         },
         {
